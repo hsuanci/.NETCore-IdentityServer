@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
-namespace netcore_identity_v4.Data.Migrations
+namespace auth.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {

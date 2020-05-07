@@ -5,7 +5,7 @@ using IdentityServer4.Models;
 using Microsoft.AspNetCore.Identity;
 using IdentityServer4.Extensions;
 using System.Linq;
-using netcore_identity_v4.Models;
+using auth.Models;
 
 namespace IdentityAuthority.Configs
 {
