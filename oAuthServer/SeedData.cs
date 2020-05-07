@@ -6,14 +6,14 @@ using System;
 using System.Linq;
 using System.Security.Claims;
 using IdentityModel;
-using netcore_identity_v4.Data;
-using netcore_identity_v4.Models;
+using auth.Data;
+using auth.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 
-namespace netcore_identity_v4
+namespace auth
 {
     public class SeedData
     {

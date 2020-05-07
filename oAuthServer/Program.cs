@@ -12,7 +12,7 @@ using Serilog.Sinks.SystemConsole.Themes;
 using System;
 using System.Linq;
 
-namespace netcore_identity_v4
+namespace auth
 {
     public class Program
     {
@@ -74,7 +74,7 @@ namespace netcore_identity_v4
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.UseSerilog();
+                    //webBuilder.UseSerilog();
                 });
     }
 }
