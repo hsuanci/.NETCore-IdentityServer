@@ -74,7 +74,7 @@ namespace auth
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    //webBuilder.UseSerilog();
+                    webBuilder.UseSerilog();
                 });
     }
 }

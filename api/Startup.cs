@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using IdentityServer4.AccessTokenValidation;
+using IdentityServer4.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -31,7 +32,7 @@ namespace api
         {
             services.AddControllers();
 
-            //IdentityServer
+            // IdentityServer
             services.AddAuthentication(Configuration["Identity:Scheme"])
                         .AddIdentityServerAuthentication(options =>
                         {
@@ -39,15 +40,16 @@ namespace api
                             options.Authority = $"https://{Configuration["Identity:IP"]}:{Configuration["Identity:Port"]}";  //IdentityServer授權路徑
                             options.ApiName = Configuration["Service:Name"];  //需要授權的服務名稱
                             options.RoleClaimType = "role"; //Add roles
-                            options.JwtValidationClockSkew = TimeSpan.FromSeconds(5);
+                            options.JwtValidationClockSkew = TimeSpan.FromSeconds(0); // 設定驗證時間偏移, 微軟預設為五分鐘, 如Token Life時間小於5分鐘請記得在這裡設定
                         });
             //CORS
             services.AddCors(options =>
             {
+                // CorsPolicy 是自訂的 Policy 名稱
                 options.AddPolicy("CorsPolicy",
-                    builder => builder.AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader());
+                builder => builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
             });
         }
 
@@ -60,14 +62,14 @@ namespace api
             }
 
             app.UseHttpsRedirection();
+            //CORS
+            app.UseCors("CorsPolicy");
 
             app.UseRouting();
 
             app.UseAuthentication();
             //IdentityServer
             app.UseAuthorization();
-            //CORS
-            app.UseCors("CorsPolicy");
 
             app.UseEndpoints(endpoints =>
             {
