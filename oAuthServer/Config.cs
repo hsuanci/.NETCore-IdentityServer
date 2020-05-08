@@ -49,12 +49,12 @@ namespace auth
                     AllowedGrantTypes = GrantTypes.CodeAndClientCredentials,
                     //RequirePkce = true,
                     ClientSecrets = { new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256()) },
-                    
+
                     RedirectUris = { "http://localhost:5003/signin-oidc" },
                     FrontChannelLogoutUri = "http://localhost:5003/signout-oidc",
                     PostLogoutRedirectUris = { "http://localhost:5003/signout-callback-oidc" },
                     AllowOfflineAccess = true,
-                    AllowedScopes = { "openid", "profile", "api1", "offline_access" }
+                    AllowedScopes = { "openid", "profile", "api1"}
                 },
 
                 // SPA client using code flow + pkce
@@ -63,9 +63,9 @@ namespace auth
                     ClientId = "spa",
                     ClientName = "SPA Client",
                     ClientUri = "http://identityserver.io",
-                    
+
                     AllowedGrantTypes = GrantTypes.CodeAndClientCredentials,
-                    //RequirePkce = true,
+                    //RequirePkce = true, // 用證書驗證
                     RequireClientSecret = false,
 
                     RedirectUris =
@@ -75,12 +75,12 @@ namespace auth
                         "http://localhost:5002/silent.html",
                         "http://localhost:5002/popup.html",
                     },
-                    AccessTokenLifetime = 5,
-                    //AbsoluteRefreshTokenLifetime = 10,
+                    AccessTokenLifetime = 20, // Token life limit
+                    //AbsoluteRefreshTokenLifetime = 10, // Refresh token life limit
                     PostLogoutRedirectUris = { "http://localhost:5002/index.html" },
                     AllowedCorsOrigins = { "http://localhost:4200" },
-                    AllowOfflineAccess = false,
-                    AllowedScopes = { "openid", "profile", "api1"}
+                    AllowOfflineAccess = true,
+                    AllowedScopes = { "openid", "profile", "api1", "offline_access" }
                 }
             };
     }
