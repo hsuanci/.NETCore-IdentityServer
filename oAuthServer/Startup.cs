@@ -94,8 +94,8 @@ namespace auth
 
             app.UseRouting();
             app.UseIdentityServer();
-            app.UseAuthentication();
-            app.UseAuthorization();
+            app.UseAuthentication(); // 驗證
+            app.UseAuthorization(); // 授權
 
             app.UseEndpoints(endpoints =>
             {
