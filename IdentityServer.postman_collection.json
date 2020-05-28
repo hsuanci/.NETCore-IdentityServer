@@ -1,0 +1,183 @@
+{
+	"info": {
+		"_postman_id": "c4e5ab1a-a9f2-4f3d-ad10-45aab694ae2a",
+		"name": "IdentityServer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Implicit Grant: GetToken",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/connect/authorize?client_id=spaImplicit&scope=api1&response_type=token&redirect_uri=http://localhost:5002/callback.html&nonce=xyz",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"connect",
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "spaImplicit"
+						},
+						{
+							"key": "scope",
+							"value": "api1"
+						},
+						{
+							"key": "response_type",
+							"value": "token"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:5002/callback.html"
+						},
+						{
+							"key": "nonce",
+							"value": "xyz"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAPIDataByToken",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6Ikg4WFJlTDMzX05ZLWV2ZHVxSDByYXciLCJ0eXAiOiJhdCtqd3QifQ.eyJuYmYiOjE1OTA2MzU3MTAsImV4cCI6MTU5MDYzOTMxMCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NTAwMSIsImF1ZCI6ImFwaTEiLCJjbGllbnRfaWQiOiJjbGllbnQiLCJzY29wZSI6WyJhcGkxIl19.gqDk4s67PoNUy67JbTVgEtBjrG9nyRQuD2qDw5GM9I1yULJQD6Vvo3roqvgyCqWP0-4b7c10sDhRqx8SUItIWaxlpq8w-tWLrOUDSqhxrKjDFXdzcnI0lgxeQ7xBVbrAQk-VJul9U1bP10RZctQrluQ1bCZ8xA3AmaQ6W-OGvLjIukNevu6GMh9jGwTYHBYoUkYg0i5Tf9sjClTzKiktwBLuu5rZTK32F1nqJy9PUmxA3Pna9Mr-ZfYfQxSDzDUy_RTuVd6F3CbxYGjJ5Y4dmLXxellRIKXs0dv5ILuiBIX33KUa1RPTog2r2NIpktdTBw73yQ783qKiY-wZcN1QsA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44398/weatherforecast",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44398",
+					"path": [
+						"weatherforecast"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ResourceOwner: GetToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "spaResource",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "api1",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "henry",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "alice",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Pass123$",
+							"type": "text"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:5001/connect/token",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Client: GetToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "client",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "api1",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "511536EF-F270-4058-80CA-1C89C192F69A",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:5001/connect/token",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
