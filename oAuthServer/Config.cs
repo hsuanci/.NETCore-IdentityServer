@@ -38,23 +38,6 @@ namespace auth
                     AllowedScopes = { "api1" }
                 },
 
-                // MVC client using code flow + pkce
-                new Client
-                {
-                    ClientId = "mvc",
-                    ClientName = "MVC Client",
-
-                    AllowedGrantTypes = GrantTypes.CodeAndClientCredentials,
-                    //RequirePkce = true,
-                    ClientSecrets = { new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256()) },
-
-                    RedirectUris = { "http://localhost:5003/signin-oidc" },
-                    FrontChannelLogoutUri = "http://localhost:5003/signout-oidc",
-                    PostLogoutRedirectUris = { "http://localhost:5003/signout-callback-oidc" },
-                    AllowOfflineAccess = true,
-                    AllowedScopes = { "openid", "profile", "api1"}
-                },
-
                 // SPA client using code flow + pkce
                 new Client
                 {
@@ -79,6 +62,54 @@ namespace auth
                     AllowedCorsOrigins = { "http://localhost:4200" },
                     AllowOfflineAccess = true,
                     AllowedScopes = { "openid", "profile", "api1", "offline_access" }
+                },
+
+                // Implicit
+                new Client
+                {
+                    ClientId = "spaImplicit",
+                    ClientName = "SPA Implicit",
+                    ClientUri = "http://identityserver.io",
+
+                    AllowedGrantTypes = GrantTypes.Implicit,
+                    //RequirePkce = true, // 用證書驗證
+                    RequireClientSecret = false,
+
+                    RedirectUris =
+                    {
+                        "http://localhost:4200/login",
+                        "http://localhost:5002/callback.html",
+                        "http://localhost:5002/silent.html",
+                        "http://localhost:5002/popup.html",
+                    },
+                    //AccessTokenLifetime = 20, // Token life limit
+                    //AbsoluteRefreshTokenLifetime = 10, // Refresh token life limit
+                    PostLogoutRedirectUris = { "http://localhost:5002/index.html" },
+                    AllowedCorsOrigins = { "http://localhost:4200" },
+                    AllowedScopes = { "openid", "profile", "api1"},
+                    AllowAccessTokensViaBrowser = true
+                }, 
+
+                // Resource Owner 
+                new Client
+                {
+                    ClientId = "spaResource",
+                    ClientName = "SPA Resource",
+                    ClientUri = "http://identityserver.io",
+                    ClientSecrets = new [] { new Secret("henry".Sha256()) },
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+
+                    RedirectUris =
+                    {
+                        "http://localhost:4200/login",
+                        "http://localhost:5002/callback.html",
+                        "http://localhost:5002/silent.html",
+                        "http://localhost:5002/popup.html",
+                    },
+                    PostLogoutRedirectUris = { "http://localhost:5002/index.html" },
+                    AllowedCorsOrigins = { "http://localhost:4200" },
+                    AllowedScopes = { "openid", "profile", "api1"},
+                    AllowAccessTokensViaBrowser = true
                 }
             };
     }
