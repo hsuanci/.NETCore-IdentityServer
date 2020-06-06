@@ -48,31 +48,6 @@
 			"response": []
 		},
 		{
-			"name": "GetAPIDataByToken",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6Ikg4WFJlTDMzX05ZLWV2ZHVxSDByYXciLCJ0eXAiOiJhdCtqd3QifQ.eyJuYmYiOjE1OTA2MzU3MTAsImV4cCI6MTU5MDYzOTMxMCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NTAwMSIsImF1ZCI6ImFwaTEiLCJjbGllbnRfaWQiOiJjbGllbnQiLCJzY29wZSI6WyJhcGkxIl19.gqDk4s67PoNUy67JbTVgEtBjrG9nyRQuD2qDw5GM9I1yULJQD6Vvo3roqvgyCqWP0-4b7c10sDhRqx8SUItIWaxlpq8w-tWLrOUDSqhxrKjDFXdzcnI0lgxeQ7xBVbrAQk-VJul9U1bP10RZctQrluQ1bCZ8xA3AmaQ6W-OGvLjIukNevu6GMh9jGwTYHBYoUkYg0i5Tf9sjClTzKiktwBLuu5rZTK32F1nqJy9PUmxA3Pna9Mr-ZfYfQxSDzDUy_RTuVd6F3CbxYGjJ5Y4dmLXxellRIKXs0dv5ILuiBIX33KUa1RPTog2r2NIpktdTBw73yQ783qKiY-wZcN1QsA",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "https://localhost:44398/weatherforecast",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44398",
-					"path": [
-						"weatherforecast"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "ResourceOwner: GetToken",
 			"request": {
 				"method": "POST",
@@ -173,6 +148,31 @@
 					"path": [
 						"connect",
 						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAPIDataByToken",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6Ikg4WFJlTDMzX05ZLWV2ZHVxSDByYXciLCJ0eXAiOiJhdCtqd3QifQ.eyJuYmYiOjE1OTA2MzU3MTAsImV4cCI6MTU5MDYzOTMxMCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NTAwMSIsImF1ZCI6ImFwaTEiLCJjbGllbnRfaWQiOiJjbGllbnQiLCJzY29wZSI6WyJhcGkxIl19.gqDk4s67PoNUy67JbTVgEtBjrG9nyRQuD2qDw5GM9I1yULJQD6Vvo3roqvgyCqWP0-4b7c10sDhRqx8SUItIWaxlpq8w-tWLrOUDSqhxrKjDFXdzcnI0lgxeQ7xBVbrAQk-VJul9U1bP10RZctQrluQ1bCZ8xA3AmaQ6W-OGvLjIukNevu6GMh9jGwTYHBYoUkYg0i5Tf9sjClTzKiktwBLuu5rZTK32F1nqJy9PUmxA3Pna9Mr-ZfYfQxSDzDUy_RTuVd6F3CbxYGjJ5Y4dmLXxellRIKXs0dv5ILuiBIX33KUa1RPTog2r2NIpktdTBw73yQ783qKiY-wZcN1QsA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44398/weatherforecast",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44398",
+					"path": [
+						"weatherforecast"
 					]
 				}
 			},

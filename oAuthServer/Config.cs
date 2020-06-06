@@ -26,7 +26,7 @@ namespace auth
         public static IEnumerable<Client> Clients =>
             new Client[]
             {
-                // client credentials flow client
+                // Client Credentials Grant Type Flow
                 new Client
                 {
                     ClientId = "client",
@@ -38,7 +38,7 @@ namespace auth
                     AllowedScopes = { "api1" }
                 },
 
-                // SPA client using code flow + pkce
+                // Authorization Code Grant Type Flow
                 new Client
                 {
                     ClientId = "spa",
@@ -46,15 +46,12 @@ namespace auth
                     ClientUri = "http://identityserver.io",
 
                     AllowedGrantTypes = GrantTypes.CodeAndClientCredentials,
-                    //RequirePkce = true, // 用證書驗證
-                    RequireClientSecret = false,
+                    RequireClientSecret = true,
+                    ClientSecrets = { new Secret("code".Sha256()) },
 
                     RedirectUris =
                     {
                         "http://localhost:4200/login",
-                        "http://localhost:5002/callback.html",
-                        "http://localhost:5002/silent.html",
-                        "http://localhost:5002/popup.html",
                     },
                     AccessTokenLifetime = 20, // Token life limit
                     //AbsoluteRefreshTokenLifetime = 10, // Refresh token life limit
@@ -64,7 +61,7 @@ namespace auth
                     AllowedScopes = { "openid", "profile", "api1", "offline_access" }
                 },
 
-                // Implicit
+                // Implicit Grant Type Flow
                 new Client
                 {
                     ClientId = "spaImplicit",
@@ -72,39 +69,31 @@ namespace auth
                     ClientUri = "http://identityserver.io",
 
                     AllowedGrantTypes = GrantTypes.Implicit,
-                    //RequirePkce = true, // 用證書驗證
-                    RequireClientSecret = false,
+                    RequireClientSecret = true,
+                    ClientSecrets = new [] { new Secret("implicit".Sha256()) },
 
                     RedirectUris =
                     {
-                        "http://localhost:4200/login",
                         "http://localhost:5002/callback.html",
-                        "http://localhost:5002/silent.html",
-                        "http://localhost:5002/popup.html",
                     },
-                    //AccessTokenLifetime = 20, // Token life limit
-                    //AbsoluteRefreshTokenLifetime = 10, // Refresh token life limit
                     PostLogoutRedirectUris = { "http://localhost:5002/index.html" },
                     AllowedCorsOrigins = { "http://localhost:4200" },
                     AllowedScopes = { "openid", "profile", "api1"},
                     AllowAccessTokensViaBrowser = true
                 }, 
 
-                // Resource Owner 
+                // Resource Owner Password Credentials Grant Type Flow
                 new Client
                 {
                     ClientId = "spaResource",
                     ClientName = "SPA Resource",
                     ClientUri = "http://identityserver.io",
-                    ClientSecrets = new [] { new Secret("henry".Sha256()) },
+                    ClientSecrets = new [] { new Secret("resource".Sha256()) },
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
 
                     RedirectUris =
                     {
-                        "http://localhost:4200/login",
                         "http://localhost:5002/callback.html",
-                        "http://localhost:5002/silent.html",
-                        "http://localhost:5002/popup.html",
                     },
                     PostLogoutRedirectUris = { "http://localhost:5002/index.html" },
                     AllowedCorsOrigins = { "http://localhost:4200" },
